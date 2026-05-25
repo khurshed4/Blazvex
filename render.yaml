@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: blazvex
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: JWT_SECRET
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false   # you set this manually in Render dashboard
+      - key: DB_PATH
+        value: /data/blazvex.db
+      - key: UPLOAD_DIR
+        value: /data/uploads
+    disk:
+      name: blazvex-data
+      mountPath: /data
+      sizeGB: 1
